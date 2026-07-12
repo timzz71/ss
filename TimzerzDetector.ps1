@@ -29,13 +29,7 @@ $Banner = @"
 "@
 
 Write-Host $Banner -ForegroundColor Cyan
-Write-Host ""
-Write-Host "                Made with " -ForegroundColor Gray -NoNewline
-Write-Host "♥ " -ForegroundColor Red -NoNewline
-Write-Host "by " -ForegroundColor Gray -NoNewline
-Write-Host "Timerzz" -ForegroundColor Cyan
-Write-Host ""
-Write-Host ("━" * 76) -ForegroundColor DarkCyan
+Write-Host ("━" * 76) -ForegroundColor Cyan
 Write-Host
 
 Write-Host "Enter path to the mods folder: " -NoNewline
