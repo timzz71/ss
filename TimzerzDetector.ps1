@@ -396,4 +396,5 @@ function Get-DownloadSource {
     param([string]$Path)
     $zoneData = Get-Content -Raw -Stream Zone.Identifier $Path -ErrorAction SilentlyContinue
     if ($zoneData -match "HostUrl=(.+)") {
-        $url = $matches[1].
+        $url = $matches[1]
+        if ($url -match
