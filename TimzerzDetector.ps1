@@ -61,7 +61,7 @@ if (-not (Test-Path $modsPath -PathType Container)) {
     exit 1
 }
 
-Write-Host "📁 Scanning directory: $modsPath" -ForegroundColor Green
+Write-Host "📁 Scanning directory: $modsPath" -ForegroundColor Red
 Write-Host
 
 $mcProcess = Get-Process javaw -ErrorAction SilentlyContinue
@@ -1056,7 +1056,7 @@ if ($jarFiles.Count -eq 0) {
 }
 
 $fileWord    = if ($jarFiles.Count -eq 1) { "file" } else { "files" }
-Write-Host "🔍 Found $($jarFiles.Count) JAR $fileWord to analyze" -ForegroundColor Green
+Write-Host "🔍 Found $($jarFiles.Count) JAR $fileWord To Scan For Sus Mods" -ForegroundColor Green
 Write-Host
 
 $spinnerFrames = @("⣾","⣽","⣻","⢿","⡿","⣟","⣯","⣷")
@@ -1106,7 +1106,7 @@ foreach ($jar in $jarFiles) {
 Write-Host "`r$(' ' * 100)`r" -NoNewline
 
 $modWord = if ($totalFiles -eq 1) { "mod" } else { "mods" }
-Write-Host "🔬 Pass 2 — Deep-scanning all $totalFiles $modWord..." -ForegroundColor Cyan
+Write-Host "🔬 Step 2 — Fully Scanning all $totalFiles $modWord..." -ForegroundColor Red
 $idx = 0
 
 foreach ($jar in $jarFiles) {
@@ -1135,7 +1135,7 @@ foreach ($jar in $jarFiles) {
 
 Write-Host "`r$(' ' * 100)`r" -NoNewline
 
-Write-Host "🛡️  Pass 3 — Bypass/injection scan on all $totalFiles $modWord..." -ForegroundColor Magenta
+Write-Host "🛡️ Step 3 — Scanning For Bypass/Injection On All $totalFiles $modWord..." -ForegroundColor Green
 $idx = 0
 
 foreach ($jar in $jarFiles) {
@@ -1163,7 +1163,7 @@ foreach ($jar in $jarFiles) {
 
 Write-Host "`r$(' ' * 100)`r" -NoNewline
 
-Write-Host "🔎 Pass 4 — Obfuscation analysis on all $totalFiles $modWord..." -ForegroundColor DarkCyan
+Write-Host "🔎 Pass 4 — Final Analysis On All $totalFiles $modWord..." -ForegroundColor Blue
 $idx = 0
 
 foreach ($jar in $jarFiles) {
@@ -1192,9 +1192,9 @@ $jvmFlags = @()
 Write-Host "⚡ Pass 5 — Scanning JVM for agents and injections..." -ForegroundColor DarkYellow
 $jvmFlags = Invoke-JvmScan
 if ($jvmFlags.Count -gt 0) {
-    Write-Host "   ⚠️  JVM issues found!" -ForegroundColor Yellow
+    Write-Host "   ⚠️  JVM FOUND! " -ForegroundColor Yellow
 } else {
-    Write-Host "   ✓  JVM looks clean" -ForegroundColor DarkGray
+    Write-Host "   ✓  JVM CLEAR! " -ForegroundColor DarkGray
 }
 
 Write-Host "`r$(' ' * 100)`r" -NoNewline
@@ -1289,22 +1289,22 @@ if ($jvmFlags.Count -gt 0) {
 }
 
 Write-Host "📊 SUMMARY" -ForegroundColor Cyan
-Write-Rule "━" 76 Blue
+Write-Rule "━" 76 Red
 Write-Host "  Total files scanned: " -ForegroundColor Gray -NoNewline; Write-Host "$totalFiles"                   -ForegroundColor White
 Write-Host "  Verified mods:       " -ForegroundColor Gray -NoNewline; Write-Host "$($verifiedMods.Count)"        -ForegroundColor Green
-Write-Host "  Unknown mods:        " -ForegroundColor Gray -NoNewline; Write-Host "$($unknownMods.Count)"         -ForegroundColor Yellow
+Write-Host "  Unknown mods:        " -ForegroundColor Gray -NoNewline; Write-Host "$($unknownMods.Count)"         -ForegroundColor Gray
 Write-Host "  Suspicious mods:     " -ForegroundColor Gray -NoNewline; Write-Host "$($suspiciousMods.Count)"      -ForegroundColor Red
 Write-Host "  Bypass/Injected:     " -ForegroundColor Gray -NoNewline; Write-Host "$($bypassMods.Count)"          -ForegroundColor Magenta
 Write-Host "  Obfuscated mods:     " -ForegroundColor Gray -NoNewline; Write-Host "$($obfuscatedMods.Count)"      -ForegroundColor Yellow
-Write-Host "  JVM issues:          " -ForegroundColor Gray -NoNewline; Write-Host "$($jvmFlags.Count)"            -ForegroundColor Yellow
+Write-Host "  JVM issues:          " -ForegroundColor Gray -NoNewline; Write-Host "$($jvmFlags.Count)"            -ForegroundColor Pink
 Write-Host
-Write-Rule "━" 76 Blue
+Write-Rule "━" 76 Red
 Write-Host ""
-Write-Host "  ✨ Analysis complete! Thanks for using Tim$erz Mod Analyzer 🐱" -ForegroundColor Cyan
+Write-Host "Scan Completed! " -ForegroundColor Cyan
 Write-Host ""
 Write-Host "  👤 Created by: " -ForegroundColor White -NoNewline
 Write-Host "🌟 " -ForegroundColor Cyan -NoNewline
-Write-Host "Tim$erz" -ForegroundColor Cyan
+Write-Host "Tim Cheese (Credits To MeowTonynoh)" -ForegroundColor Cyan
 Write-Host "  📱 My Socials: " -ForegroundColor White -NoNewline
 Write-Host "💬 " -ForegroundColor Blue -NoNewline
 Write-Host "Discord  : " -ForegroundColor Blue -NoNewline
@@ -1318,7 +1318,7 @@ Write-Host "🎥 " -ForegroundColor Red -NoNewline
 Write-Host "YouTube  : " -ForegroundColor Red -NoNewline
 Write-Host "https://www.youtube.com/@Crypted3057" -ForegroundColor Red
 Write-Host ""
-Write-Rule "━" 76 Blue
+Write-Rule "━" 76 Red
 Write-Host ""
 Write-Host "Press any key to exit..." -ForegroundColor DarkGray
 $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
