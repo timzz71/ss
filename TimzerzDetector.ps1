@@ -32,8 +32,7 @@ Write-Host $Banner -ForegroundColor Cyan
 Write-Host ("━" * 76) -ForegroundColor Cyan
 Write-Host
 
-Write-Host "Enter path to the mods folder: " -NoNewline
-Write-Host "(press Enter to use default)" -ForegroundColor DarkGray
+Write-Host "Please Copy Your Path To Your Mods Folder And Paste It In: " -NoNewline
 $modsPath = Read-Host "PATH"
 Write-Host
 
