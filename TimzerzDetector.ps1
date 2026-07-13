@@ -54,7 +54,7 @@ if (-not (Test-Path $modsPath -PathType Container)) {
     exit 1
 }
 
-Write-Host "📁 Scanning directory: $modsPath" -ForegroundColor Red
+Write-Host "📁 Scanning: $modsPath" -ForegroundColor Red
 Write-Host
 
 $mcProcess = Get-Process javaw -ErrorAction SilentlyContinue
@@ -1035,14 +1035,14 @@ $obfuscatedMods  = @()
 try {
     $jarFiles = Get-ChildItem -Path $modsPath -Filter *.jar -ErrorAction Stop
 } catch {
-    Write-Host "❌ Error accessing directory: $_" -ForegroundColor Red
+    Write-Host "❌ Error accessing The Path: $_" -ForegroundColor Red
     Write-Host "Press any key to exit..." -ForegroundColor Gray
     $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
     exit 1
 }
 
 if ($jarFiles.Count -eq 0) {
-    Write-Host "⚠️  No JAR files found in: $modsPath" -ForegroundColor Yellow
+    Write-Host "No JAR files were found in: $modsPath" -ForegroundColor Yellow
     Write-Host "Press any key to exit..." -ForegroundColor Gray
     $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
     exit 0
@@ -1056,7 +1056,7 @@ $spinnerFrames = @("⣾","⣽","⣻","⢿","⡿","⣟","⣯","⣷")
 $totalFiles    = $jarFiles.Count
 $idx           = 0
 
-Write-Host "🔍 Pass 1 — Hash verification (Modrinth + Megabase)..." -ForegroundColor Cyan
+Write-Host "🔍 Step 1 — Ensuring Data Integrity (Modrinth + Megabase)..." -ForegroundColor Cyan
 
 foreach ($jar in $jarFiles) {
     $idx++
@@ -1099,7 +1099,7 @@ foreach ($jar in $jarFiles) {
 Write-Host "`r$(' ' * 100)`r" -NoNewline
 
 $modWord = if ($totalFiles -eq 1) { "mod" } else { "mods" }
-Write-Host "🔬 Step 2 — Fully Scanning all $totalFiles $modWord..." -ForegroundColor Red
+Write-Host " 🔍Step 2 — Fully Scanning all $totalFiles $modWord..." -ForegroundColor Red
 $idx = 0
 
 foreach ($jar in $jarFiles) {
@@ -1128,7 +1128,7 @@ foreach ($jar in $jarFiles) {
 
 Write-Host "`r$(' ' * 100)`r" -NoNewline
 
-Write-Host "🛡️ Step 3 — Scanning For Bypass/Injection On All $totalFiles $modWord..." -ForegroundColor Green
+Write-Host "🔍 Step 3 — Scanning For Bypass/Injection On All $totalFiles $modWord..." -ForegroundColor Green
 $idx = 0
 
 foreach ($jar in $jarFiles) {
@@ -1156,7 +1156,7 @@ foreach ($jar in $jarFiles) {
 
 Write-Host "`r$(' ' * 100)`r" -NoNewline
 
-Write-Host "🔎 Pass 4 — Final Analysis On All $totalFiles $modWord..." -ForegroundColor Blue
+Write-Host "🔎 Step 4 — Final Analysis On All $totalFiles $modWord..." -ForegroundColor Blue
 $idx = 0
 
 foreach ($jar in $jarFiles) {
@@ -1182,7 +1182,7 @@ foreach ($jar in $jarFiles) {
 Write-Host "`r$(' ' * 100)`r" -NoNewline
 
 $jvmFlags = @()
-Write-Host "⚡ Step 5 — Scanning JVM for agents and injections..." -ForegroundColor DarkYellow
+Write-Host "⚡ Step 5 — Scanning JVM for agents and injections and bypasses..." -ForegroundColor DarkYellow
 $jvmFlags = Invoke-JvmScan
 if ($jvmFlags.Count -gt 0) {
     Write-Host "   ⚠️  JVM FOUND! " -ForegroundColor Yellow
@@ -1295,21 +1295,11 @@ Write-Rule "━" 76 Red
 Write-Host ""
 Write-Host "Scan Completed! " -ForegroundColor Cyan
 Write-Host ""
-Write-Host "  👤 Created by: " -ForegroundColor White -NoNewline
-Write-Host "🌟 " -ForegroundColor Cyan -NoNewline
-Write-Host "Tim Cheese (Credits To MeowTonynoh)" -ForegroundColor Cyan
-Write-Host "  📱 My Socials: " -ForegroundColor White -NoNewline
-Write-Host "💬 " -ForegroundColor Blue -NoNewline
-Write-Host "Discord  : " -ForegroundColor Blue -NoNewline
-Write-Host "crypted3057" -ForegroundColor Blue
 Write-Host "                 " -NoNewline
 Write-Host "🔗 " -ForegroundColor DarkGray -NoNewline
 Write-Host "GitHub   : " -ForegroundColor DarkGray -NoNewline
 Write-Host "https://github.com/timzz71" -ForegroundColor DarkGray
 Write-Host "                 " -NoNewline
-Write-Host "🎥 " -ForegroundColor Red -NoNewline
-Write-Host "YouTube  : " -ForegroundColor Red -NoNewline
-Write-Host "https://www.youtube.com/@Crypted3057" -ForegroundColor Red
 Write-Host ""
 Write-Rule "━" 76 Red
 Write-Host ""
