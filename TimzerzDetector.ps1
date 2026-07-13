@@ -1281,7 +1281,7 @@ if ($jvmFlags.Count -gt 0) {
     Write-Host ""
 }
 
-Write-Host "📊 SUMMARY" -ForegroundColor Cyan
+Write-Host "📊 Results" -ForegroundColor Red
 Write-Rule "━" 76 Red
 Write-Host "  Total files scanned: " -ForegroundColor Gray -NoNewline; Write-Host "$totalFiles"                   -ForegroundColor White
 Write-Host "  Verified mods:       " -ForegroundColor Gray -NoNewline; Write-Host "$($verifiedMods.Count)"        -ForegroundColor Green
